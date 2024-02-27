@@ -43,6 +43,11 @@ local plugins = {
     opts = overrides.nvimtree,
   },
 
+  {
+    "stevearc/conform.nvim",
+    opts = {},
+  },
+
   -- Install a plugin
   {
     "max397574/better-escape.nvim",
@@ -52,6 +57,46 @@ local plugins = {
     end,
   },
 
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("gitsigns").setup({
+        signs = {
+          add = { text = "+" },
+          change = { text = "|" },
+          delete = { text = "_" },
+          topdelete = { text = "‾" },
+          changedelete = { text = "~" },
+          untracked = { text = "•" },
+        },
+        auto_attach = true,
+        current_line_blame = true,
+        numhl = true,
+        current_line_blame_opts = {
+          virt_text = true,
+          virt_text_pos = "eol",
+          delay = 500,
+        },
+      })
+    end,
+  },
+
+  {
+    "RRethy/base16-nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd([[colorscheme base16-gruvbox-dark-hard]])
+			vim.o.background = 'dark'
+			-- XXX: hi Normal ctermbg=NONE
+			-- Make comments more prominent -- they are important.
+			local bools = vim.api.nvim_get_hl(0, { name = 'Boolean' })
+			vim.api.nvim_set_hl(0, 'Comment', bools)
+      -- Make it clearly visible which argument we're at.
+      local marked = vim.api.nvim_get_hl(0, { name = 'PMenu' })
+			vim.api.nvim_set_hl(0, 'LspSignatureActiveParameter', { fg = marked.fg, bg = marked.bg, ctermfg = marked.ctermfg, ctermbg = marked.ctermbg, bold = true })
+    end,
+  }
 
   -- To make a plugin not be loaded
   -- {

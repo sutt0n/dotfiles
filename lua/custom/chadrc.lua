@@ -7,8 +7,8 @@ vim.g.copilot_no_tab_map = true
 local highlights = require "custom.highlights"
 
 M.ui = {
-  theme = "tokyonight",
-  theme_toggle = { "tokyonight", "one_light" },
+  theme = "gruvchad",
+  -- theme_toggle = { "gruvchad", "one_light" },
   transparency = true,
 
   hl_override = highlights.override,

@@ -242,9 +242,13 @@ local default_plugins = {
       local telescope = require "telescope"
       telescope.setup(opts)
 
-      -- load extensions
-      for _, ext in ipairs(opts.extensions_list) do
-        telescope.load_extension(ext)
+      -- load extensions if present
+      if opts.extensions_list then
+        for _, ext in ipairs(opts.extensions_list) do
+          -- print "loading telescope extension: " .. ext
+          print("loading telescope extension: " .. ext)
+          telescope.load_extension(ext)
+        end
       end
     end,
   },
@@ -263,6 +267,10 @@ local default_plugins = {
     end,
   },
 }
+
+-- aware of: picking up stuff from brevon so he can move onto DH
+-- generally: be more thorough in things (ex: node 20 tsconfig);
+-- 
 
 local config = require("core.utils").load_config()
 
