@@ -27,6 +27,17 @@ local plugins = {
     end, -- Override to setup mason-lspconfig
   },
 
+  {
+    "MunifTanjim/prettier.nvim",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "jose-elias-alvarez/null-ls.nvim",
+    },
+    config = function()
+      require "custom.configs.prettier"
+    end,
+  },
+
   -- override plugin configs
   {
     "williamboman/mason.nvim",
@@ -47,6 +58,8 @@ local plugins = {
     "stevearc/conform.nvim",
     opts = {},
   },
+
+
 
   -- Install a plugin
   {
@@ -96,7 +109,8 @@ local plugins = {
       local marked = vim.api.nvim_get_hl(0, { name = 'PMenu' })
 			vim.api.nvim_set_hl(0, 'LspSignatureActiveParameter', { fg = marked.fg, bg = marked.bg, ctermfg = marked.ctermfg, ctermbg = marked.ctermbg, bold = true })
     end,
-  }
+  },
+
 
   -- To make a plugin not be loaded
   -- {
